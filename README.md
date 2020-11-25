@@ -13,7 +13,7 @@ I wanted to create this app because when I cancelled cable I wanted to know what
   - The authenticated user can add/delete a show on the watchlist and a way for the user to say whether or not they have watched the show 
 - Favorites 
   - The authenticated user can add/delete a show on their favorites and add a description or favorite part of the show and the user can update the description 
-- The authenticated user can rate the shows they have in their favorites Still thinking of some stretch goals and other features but wanted to get this in before someone took it
+- The authenticated user can rate the shows they have in their favorites
 
 ## ERD
 ![ERD](https://i.postimg.cc/sDrDjRgB/new-captsone-erd.png)
