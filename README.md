@@ -17,3 +17,6 @@ I wanted to create this app because when I cancelled cable I wanted to know what
 
 ## ERD
 ![ERD](https://i.postimg.cc/sDrDjRgB/new-captsone-erd.png)
+
+## Wireframe
+[Wireframe Link](https://www.figma.com/file/6lvjsIpekpPl5gwTUztuWb/Know-The-Network?node-id=0%3A1)
