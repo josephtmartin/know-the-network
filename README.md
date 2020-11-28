@@ -14,10 +14,10 @@ I wanted to create this app because when I cancelled cable I wanted to know what
   - The authenticated user can add/delete a show on their favorites and add a description or favorite part of the show and the user can update the description 
 - The authenticated user can rate the shows they have in their favorites
 
-## ERD
-![ERD](https://i.postimg.cc/sDrDjRgB/new-captsone-erd.png)
-
 ## Planning
 - [Wireframe Link](https://www.figma.com/file/6lvjsIpekpPl5gwTUztuWb/Know-The-Network?node-id=0%3A1)
 - [LucidChart ERD](https://lucid.app/lucidchart/invitations/accept/7c9cc794-9f81-44d5-90e3-1d2b49e1cf0b)
 - [Github Project](https://github.com/josephtmartin/know-the-network/projects/2)
+
+## ERD
+![ERD](https://i.postimg.cc/sDrDjRgB/new-captsone-erd.png)
