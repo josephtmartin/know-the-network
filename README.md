@@ -22,6 +22,9 @@ I wanted to create this app because when I cancelled cable I wanted to know what
 ## ERD
 ![ERD](https://i.postimg.cc/sDrDjRgB/new-captsone-erd.png)
 
+## Loom Video
+[Overview Of Project Planning](https://www.loom.com/share/865f41b3000b475eb504b6b9bf3ea2c0)
+
 ## Example Data From [EpisoDate.com API](https://www.episodate.com/api)
 ```
     {
