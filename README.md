@@ -8,7 +8,6 @@ I wanted to create this app because when I cancelled cable I wanted to know what
 
 ## Features
 - Search feature to search a show and it display what network/app/streaming platform it is available on 
-- Filter based on network/app/streaming platform 
 - Watchlist 
   - The authenticated user can add/delete a show on the watchlist and a way for the user to say whether or not they have watched the show 
 - Favorites 
