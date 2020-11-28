@@ -21,3 +21,18 @@ I wanted to create this app because when I cancelled cable I wanted to know what
 
 ## ERD
 ![ERD](https://i.postimg.cc/sDrDjRgB/new-captsone-erd.png)
+
+## Example Data From [EpisoDate.com](https://www.episodate.com/api)
+```
+    {
+      "id": 46778,
+      "name": "Stranger Things",
+      "permalink": "montauk",
+      "start_date": "2016-07-15",
+      "end_date": null,
+      "country": "US",
+      "network": "Netflix",
+      "status": "Running",
+      "image_thumbnail_path": "https://static.episodate.com/images/tv-show/thumbnail/46778.jpg"
+    },
+```
