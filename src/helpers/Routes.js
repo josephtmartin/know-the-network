@@ -14,15 +14,17 @@ export default function Routes({ user }) {
         path='/'
         component={() => <Home user={user} />}
       />
-      <PrivateRoute
+      {/* change to private route later */}
+      <Route
         exact
-        path='/boards'
+        path='/watchlist'
         component={Watchlist}
         user={user}
       />
-      <PrivateRoute
+      {/* change to private route later */}
+      <Route
         exact
-        path='/pins'
+        path='/favorites'
         component={Favorites}
         user={user}
       />
