@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../views/Home';
 import Watchlist from '../views/Watchlist';
 import Favorites from '../views/Favorites';
+import SearchResults from '../views/SearchResults';
 import NotFound from '../views/NotFound';
 
 export default function Routes({ user }) {
@@ -14,25 +15,23 @@ export default function Routes({ user }) {
         path='/'
         component={() => <Home user={user} />}
       />
-      {/* change to private route later */}
       <PrivateRoute
         exact
         path='/watchlist'
         component={Watchlist}
         user={user}
       />
-      {/* change to private route later */}
       <PrivateRoute
         exact
         path='/favorites'
         component={Favorites}
         user={user}
       />
-      {/* <Route
+      <Route
         exact
-        path='/search/:term/:type'
+        path='/search/:term'
         component={(props) => <SearchResults {...props} /> }
-      /> */}
+      />
       <Route component={NotFound} />
     </Switch>
   );

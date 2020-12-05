@@ -9,4 +9,11 @@ const getMostPopular = () => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-export default { getMostPopular };
+const searchShows = (term) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/search?q=${term}`)
+    .then((response) => {
+      resolve(response.data.tv_shows);
+    });
+});
+
+export default { getMostPopular, searchShows };
