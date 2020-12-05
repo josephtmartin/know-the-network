@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { Link } from 'react-router-dom';
-// import SearchInput from '../SearchInput';
 
 export default class MyNavbar extends Component {
   logMeOut = (e) => {
@@ -28,7 +27,6 @@ export default class MyNavbar extends Component {
                   <Link to='/favorites' className="nav-link" href="#">Favorites</Link>
                 </li>
               </ul>
-              {/* <SearchInput /> */}
               <div className="form-inline my-2 my-lg-0">
                 {user && (
                   <button className="nav-link btn btn-danger" onClick={this.logMeOut}>Logout</button>
