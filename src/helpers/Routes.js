@@ -5,6 +5,7 @@ import Home from '../views/Home';
 import Watchlist from '../views/Watchlist';
 import Favorites from '../views/Favorites';
 import SearchResults from '../views/SearchResults';
+import SingleShow from '../views/SingleShow';
 import NotFound from '../views/NotFound';
 
 export default function Routes({ user }) {
@@ -26,6 +27,11 @@ export default function Routes({ user }) {
         path='/favorites'
         component={Favorites}
         user={user}
+      />
+      <Route
+        exact
+        path='/shows/:id'
+        component={(props) => <SingleShow user={user} {...props} /> }
       />
       <Route
         exact

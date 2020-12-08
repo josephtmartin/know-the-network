@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ShowCard from '../components/Cards/ShowCard';
-import showData from '../helpers/data/showData';
+import { searchShows } from '../helpers/data/showData';
 
 export default class SearchResults extends Component {
   state = {
@@ -14,7 +14,7 @@ export default class SearchResults extends Component {
 
   performSearch = () => {
     const searchTerm = this.props.match.params.term.toLowerCase();
-    this.getResults = showData.searchShows(searchTerm)
+    this.getResults = searchShows(searchTerm)
       .then((results) => {
         this.setState({
           results,

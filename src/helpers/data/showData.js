@@ -13,7 +13,14 @@ const searchShows = (term) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/search?q=${term}`)
     .then((response) => {
       resolve(response.data.tv_shows);
-    });
+    }).catch((error) => reject(error));
 });
 
-export default { getMostPopular, searchShows };
+const getSingleShow = (id) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/show-details?q=${id}`)
+    .then((response) => {
+      resolve(response.data.tvShow);
+    }).catch((error) => reject(error));
+});
+
+export { getMostPopular, searchShows, getSingleShow };
