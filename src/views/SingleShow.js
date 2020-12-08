@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getSingleShow } from '../helpers/data/showData';
-import createUserShows from '../helpers/data/userShows';
+import { createUserShowsWatchlist } from '../helpers/data/userShowsData';
 import getUid from '../helpers/data/authData';
 
 export default class SingleShow extends Component {
@@ -27,7 +27,7 @@ export default class SingleShow extends Component {
   addToWatchlist = () => {
     const { show, userId } = this.state;
     const showId = show.id;
-    createUserShows(showId, userId);
+    createUserShowsWatchlist(showId, userId);
   }
 
   render() {
