@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function WatchlistCard({ show, wasWatched, wasFavorited }) {
+export default function FavoritesCard({ show }) {
   return (
         <div className='card m-2'>
           <div className='card-image-container'>
@@ -11,10 +11,9 @@ export default function WatchlistCard({ show, wasWatched, wasFavorited }) {
               <h5>Network: {show.network}</h5>
               <h5>Country: {show.country}</h5>
               <h5>Airing: {show.status}</h5>
-              <div className='button-container'>
-                <button className='btn btn-secondary watched' id={show.id} onClick={(e) => wasWatched(e)}>Watched</button>
-                <button className='btn btn-secondary favorite' id={show.id} onClick={(e) => wasFavorited(e)}>Favorite</button>
-              </div>
+              {/* <div className='button-container'>
+                <button className='btn btn-secondary favorite' id={show.id} onClick={(e) => favorited(e)}>Favorite</button>
+              </div> */}
           </div>
         </div>
   );

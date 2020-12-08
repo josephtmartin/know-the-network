@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getUserShows, wasWatched } from '../helpers/data/userShowsData';
+import { getUserShows, wasWatched, wasFavorited } from '../helpers/data/userShowsData';
 import { getSingleShow } from '../helpers/data/showData';
 import getUid from '../helpers/data/authData';
 import WatchlistCard from '../components/Cards/WatchlistCard';
@@ -7,7 +7,6 @@ import WatchlistCard from '../components/Cards/WatchlistCard';
 export default class SingleShow extends Component {
   state = {
     shows: [],
-    userShows: [],
   }
 
   componentDidMount() {
@@ -43,14 +42,26 @@ export default class SingleShow extends Component {
       });
   }
 
+  favorited = (e) => {
+    wasFavorited(e.target.id)
+      .then(() => {
+        const userId = getUid();
+        setTimeout(() => {
+          this.loadUserShows(userId).then((response) => {
+            this.setState({ shows: response });
+          });
+        }, 500);
+      });
+  }
+
   render() {
     const { shows } = this.state;
     const renderShows = () => (
-      shows.map((show) => <WatchlistCard key={show.id} show={show} wasWatched={this.watched} />)
+      shows.map((show) => <WatchlistCard key={show.id} show={show} wasWatched={this.watched} wasFavorited={this.favorited} />)
     );
     return (
       <div>
-        <h1>Watchlist</h1>
+        <h1>Shows You Want To Watch</h1>
         <div className='d-flex flex-wrap container'>{renderShows()}</div>
       </div>
     );

@@ -35,22 +35,23 @@ const getUserShows = (userId) => new Promise((resolve, reject) => {
 const wasWatched = (showId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`).then((response) => {
     const firebaseKey = Object.keys(response.data)[0];
-    axios.patch(`${baseUrl}/user-shows/${firebaseKey}.json`, { watched: true });
+    axios.delete(`${baseUrl}/user-shows/${firebaseKey}.json`);
   })
     .then(resolve).catch((error) => reject(error));
 });
 
-// const getUserShow = (showId) => new Promise((resolve, reject) => {
-//   axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`)
-//     .then((response) => {
-//       resolve(response.data);
-//     }).catch((error) => reject(error));
-// });
+const wasFavorited = (showId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`).then((response) => {
+    const firebaseKey = Object.keys(response.data)[0];
+    axios.patch(`${baseUrl}/user-shows/${firebaseKey}.json`, { favorites: true, watched: true, watchlist: false });
+  })
+    .then(resolve).catch((error) => reject(error));
+});
 
 export {
   createUserShowsWatchlist,
   createUserShowsFavorites,
   getUserShows,
   wasWatched,
-  // getUserShow,
+  wasFavorited,
 };
