@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getUserShows, wasWatched, wasFavorited } from '../helpers/data/userShowsData';
+import { getUserShows, deleteShow, wasFavorited } from '../helpers/data/userShowsData';
 import { getSingleShow } from '../helpers/data/showData';
 import getUid from '../helpers/data/authData';
 import WatchlistCard from '../components/Cards/WatchlistCard';
@@ -31,7 +31,7 @@ export default class SingleShow extends Component {
   )
 
   watched = (e) => {
-    wasWatched(e.target.id)
+    deleteShow(e.target.id)
       .then(() => {
         const userId = getUid();
         setTimeout(() => {

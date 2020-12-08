@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getSingleShow } from '../helpers/data/showData';
-import { createUserShowsWatchlist } from '../helpers/data/userShowsData';
+import { createUserShowsWatchlist, createUserShowsFavorites } from '../helpers/data/userShowsData';
 import getUid from '../helpers/data/authData';
 
 export default class SingleShow extends Component {
@@ -30,6 +30,12 @@ export default class SingleShow extends Component {
     createUserShowsWatchlist(showId, userId);
   }
 
+  addToFavorites = () => {
+    const { show, userId } = this.state;
+    const showId = show.id;
+    createUserShowsFavorites(showId, userId);
+  }
+
   render() {
     const { show } = this.state;
     return (
@@ -44,6 +50,7 @@ export default class SingleShow extends Component {
               <h5>Airing: {show.status}</h5>
             <div className='button-container-board d-flex justify-content-center'>
               <button className='btn btn-secondary watchlist-button' onClick={this.addToWatchlist}>Add To WatchList</button>
+              <button className='btn btn-secondary favorites-button' onClick={this.addToFavorites}>Add To Favorites</button>
             </div>
           </div>
         </div>

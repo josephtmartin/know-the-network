@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getUserShows } from '../helpers/data/userShowsData';
+import { getUserShows, deleteShow } from '../helpers/data/userShowsData';
 import { getSingleShow } from '../helpers/data/showData';
 import getUid from '../helpers/data/authData';
 import FavoritesCard from '../components/Cards/FavoritesCard';
@@ -30,10 +30,23 @@ export default class Favorites extends Component {
     })
   )
 
+  removeFavorite = (e) => {
+    deleteShow(e.target.id)
+      .then(() => {
+        const userId = getUid();
+        setTimeout(() => {
+          this.loadUserShows(userId)
+            .then((response) => {
+              this.setState({ shows: response });
+            });
+        }, 500);
+      });
+  }
+
   render() {
     const { shows } = this.state;
     const renderShows = () => (
-      shows.map((show) => <FavoritesCard key={show.id} show={show} />)
+      shows.map((show) => <FavoritesCard key={show.id} show={show} removeFavorite={this.removeFavorite}/>)
     );
     return (
       <div>

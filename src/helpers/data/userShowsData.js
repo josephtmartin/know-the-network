@@ -17,13 +17,20 @@ const createUserShowsWatchlist = (showId, userId) => {
     });
 };
 
-const createUserShowsFavorites = (showId, userId) => new Promise((resolve, reject) => {
-  axios.patch(`${baseUrl}/user-shows.json`, {
+const createUserShowsFavorites = (showId, userId) => {
+  axios.post(`${baseUrl}/user-shows.json`, {
     showId,
     userId,
+    watched: true,
+    watchlist: false,
     favorites: true,
-  }).catch((error) => reject(error));
-});
+  })
+    .then((response) => {
+      const update = { firebaseKey: response.data.name };
+      axios.patch(`${baseUrl}/user-shows/${response.data.name}.json`, update)
+        .catch((error) => console.warn(error));
+    });
+};
 
 const getUserShows = (userId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/user-shows.json?orderBy="userId"&equalTo="${userId}"`)
@@ -32,7 +39,7 @@ const getUserShows = (userId) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-const wasWatched = (showId) => new Promise((resolve, reject) => {
+const deleteShow = (showId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`).then((response) => {
     const firebaseKey = Object.keys(response.data)[0];
     axios.delete(`${baseUrl}/user-shows/${firebaseKey}.json`);
@@ -52,6 +59,6 @@ export {
   createUserShowsWatchlist,
   createUserShowsFavorites,
   getUserShows,
-  wasWatched,
+  deleteShow,
   wasFavorited,
 };
