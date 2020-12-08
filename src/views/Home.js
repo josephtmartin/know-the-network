@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Auth from '../components/Auth';
-import showData from '../helpers/data/showData';
+import { getMostPopular } from '../helpers/data/showData';
 import ShowCard from '../components/Cards/ShowCard';
 import SearchInput from '../components/SearchInput';
 
@@ -23,7 +23,7 @@ export default class Home extends Component {
   }
 
   loadShows = () => {
-    showData.getMostPopular().then((response) => {
+    getMostPopular().then((response) => {
       this.setState({
         shows: response,
       });
@@ -37,7 +37,7 @@ export default class Home extends Component {
     );
     return (
       <div>
-        <h1 className='d-flex justify-content-center mt-3'>Home Component</h1>
+        <h1 className='d-flex justify-content-center mt-3'>Welcome To Know The Network!</h1>
         <div className='d-flex flex-wrap container justify-content-center'>
           {this.loadSignIn()}
         </div>
