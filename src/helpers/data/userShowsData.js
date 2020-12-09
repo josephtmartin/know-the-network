@@ -55,10 +55,34 @@ const wasFavorited = (showId) => new Promise((resolve, reject) => {
     .then(resolve).catch((error) => reject(error));
 });
 
+const addReview = (showId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId.showId}`).then((response) => {
+    console.warn(Object.keys(response.data)[0]);
+    const firebaseKey = Object.keys(response.data)[0];
+    axios.patch(`${baseUrl}/user-shows/${firebaseKey}.json`, showId);
+  })
+    .then(resolve).catch((error) => reject(error));
+});
+
+const getReviews = (showId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`).then((response) => {
+    resolve(Object.values(response.data)[0]);
+  }).catch((error) => reject(error));
+});
+
+const updateReview = (showId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId.showId}`).then((response) => {
+    resolve(Object.values(response.data)[0]);
+  }).catch((error) => reject(error));
+});
+
 export {
   createUserShowsWatchlist,
   createUserShowsFavorites,
   getUserShows,
   deleteShow,
   wasFavorited,
+  addReview,
+  getReviews,
+  updateReview,
 };

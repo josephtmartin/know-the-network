@@ -46,7 +46,7 @@ export default class Favorites extends Component {
   render() {
     const { shows } = this.state;
     const renderShows = () => (
-      shows.map((show) => <FavoritesCard key={show.id} show={show} removeFavorite={this.removeFavorite}/>)
+      shows.map((show) => <FavoritesCard key={show.id} show={show} removeFavorite={this.removeFavorite} onUpdate={this.loadUserShows}/>)
     );
     return (
       <div>

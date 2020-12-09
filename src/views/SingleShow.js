@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { getSingleShow } from '../helpers/data/showData';
-import { createUserShowsWatchlist, createUserShowsFavorites } from '../helpers/data/userShowsData';
+import { createUserShowsWatchlist, createUserShowsFavorites, getReviews } from '../helpers/data/userShowsData';
 import getUid from '../helpers/data/authData';
 
 export default class SingleShow extends Component {
   state = {
     show: {},
+    review: {},
   }
 
   componentDidMount() {
@@ -13,6 +14,7 @@ export default class SingleShow extends Component {
     this.getShow(showId);
     const userId = getUid();
     this.setState({ userId });
+    this.loadReviews(showId);
   }
 
   getShow = (showId) => {
@@ -36,8 +38,17 @@ export default class SingleShow extends Component {
     createUserShowsFavorites(showId, userId);
   }
 
+  loadReviews = (showId) => {
+    getReviews(showId)
+      .then((response) => {
+        this.setState({
+          review: response,
+        });
+      });
+  }
+
   render() {
-    const { show } = this.state;
+    const { show, review } = this.state;
     return (
       <>
         <div className='d-flex flex-wrap justify-content-center container'>
@@ -52,6 +63,10 @@ export default class SingleShow extends Component {
               <button className='btn btn-secondary watchlist-button' onClick={this.addToWatchlist}>Add To WatchList</button>
               <button className='btn btn-secondary favorites-button' onClick={this.addToFavorites}>Add To Favorites</button>
             </div>
+            {/* <div>
+              <h3>{review.description}</h3>
+              <h3>{review.rating}</h3>
+            </div> */}
           </div>
         </div>
       </div>

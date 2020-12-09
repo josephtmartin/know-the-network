@@ -1,6 +1,8 @@
 import React from 'react';
+import AppModal from '../AppModal';
+import ReviewForm from '../Forms/ReviewForm';
 
-export default function FavoritesCard({ show, removeFavorite }) {
+export default function FavoritesCard({ show, removeFavorite, onUpdate }) {
   return (
         <div className='card m-2'>
           <div className='card-image-container'>
@@ -14,6 +16,9 @@ export default function FavoritesCard({ show, removeFavorite }) {
               <div className='button-container'>
                 <button className='btn btn-secondary favorite' id={show.id} onClick={(e) => removeFavorite(e)}>Remove From Favorites</button>
               </div>
+              <AppModal title={'Review Form'} buttonLabel={'Leave A Review'}>
+                <ReviewForm showId={show.id} onUpdate={onUpdate}/>
+              </AppModal>
           </div>
         </div>
   );
