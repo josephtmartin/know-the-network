@@ -17,13 +17,20 @@ const createUserShowsWatchlist = (showId, userId) => {
     });
 };
 
-const createUserShowsFavorites = (showId, userId) => new Promise((resolve, reject) => {
-  axios.patch(`${baseUrl}/user-shows.json`, {
+const createUserShowsFavorites = (showId, userId) => {
+  axios.post(`${baseUrl}/user-shows.json`, {
     showId,
     userId,
+    watched: true,
+    watchlist: false,
     favorites: true,
-  }).catch((error) => reject(error));
-});
+  })
+    .then((response) => {
+      const update = { firebaseKey: response.data.name };
+      axios.patch(`${baseUrl}/user-shows/${response.data.name}.json`, update)
+        .catch((error) => console.warn(error));
+    });
+};
 
 const getUserShows = (userId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/user-shows.json?orderBy="userId"&equalTo="${userId}"`)
@@ -32,25 +39,43 @@ const getUserShows = (userId) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-const wasWatched = (showId) => new Promise((resolve, reject) => {
+const deleteShow = (showId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`).then((response) => {
     const firebaseKey = Object.keys(response.data)[0];
-    axios.patch(`${baseUrl}/user-shows/${firebaseKey}.json`, { watched: true });
+    axios.delete(`${baseUrl}/user-shows/${firebaseKey}.json`);
   })
     .then(resolve).catch((error) => reject(error));
 });
 
-// const getUserShow = (showId) => new Promise((resolve, reject) => {
-//   axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`)
-//     .then((response) => {
-//       resolve(response.data);
-//     }).catch((error) => reject(error));
-// });
+const wasFavorited = (showId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`).then((response) => {
+    const firebaseKey = Object.keys(response.data)[0];
+    axios.patch(`${baseUrl}/user-shows/${firebaseKey}.json`, { favorites: true, watched: true, watchlist: false });
+  })
+    .then(resolve).catch((error) => reject(error));
+});
+
+const addReview = (showId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId.showId}`).then((response) => {
+    console.warn(Object.keys(response.data)[0]);
+    const firebaseKey = Object.keys(response.data)[0];
+    axios.patch(`${baseUrl}/user-shows/${firebaseKey}.json`, showId);
+  })
+    .then(resolve).catch((error) => reject(error));
+});
+
+const getJoinTable = (showId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`).then((response) => {
+    resolve(Object.values(response.data)[0]);
+  }).catch((error) => reject(error));
+});
 
 export {
   createUserShowsWatchlist,
   createUserShowsFavorites,
   getUserShows,
-  wasWatched,
-  // getUserShow,
+  deleteShow,
+  wasFavorited,
+  addReview,
+  getJoinTable,
 };
