@@ -64,14 +64,8 @@ const addReview = (showId) => new Promise((resolve, reject) => {
     .then(resolve).catch((error) => reject(error));
 });
 
-const getReviews = (showId) => new Promise((resolve, reject) => {
+const getJoinTable = (showId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`).then((response) => {
-    resolve(Object.values(response.data)[0]);
-  }).catch((error) => reject(error));
-});
-
-const updateReview = (showId) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId.showId}`).then((response) => {
     resolve(Object.values(response.data)[0]);
   }).catch((error) => reject(error));
 });
@@ -83,6 +77,5 @@ export {
   deleteShow,
   wasFavorited,
   addReview,
-  getReviews,
-  updateReview,
+  getJoinTable,
 };

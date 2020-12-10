@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getSingleShow } from '../helpers/data/showData';
-import { createUserShowsWatchlist, createUserShowsFavorites, getReviews } from '../helpers/data/userShowsData';
+import { createUserShowsWatchlist, createUserShowsFavorites } from '../helpers/data/userShowsData';
 import getUid from '../helpers/data/authData';
 
 export default class SingleShow extends Component {
@@ -14,7 +14,7 @@ export default class SingleShow extends Component {
     this.getShow(showId);
     const userId = getUid();
     this.setState({ userId });
-    this.loadReviews(showId);
+    // this.loadReviews(showId);
   }
 
   getShow = (showId) => {
@@ -38,14 +38,14 @@ export default class SingleShow extends Component {
     createUserShowsFavorites(showId, userId);
   }
 
-  loadReviews = (showId) => {
-    getReviews(showId)
-      .then((response) => {
-        this.setState({
-          review: response,
-        });
-      });
-  }
+  // loadReviews = (showId) => {
+  //   getReviews(showId)
+  //     .then((response) => {
+  //       this.setState({
+  //         review: response,
+  //       });
+  //     });
+  // }
 
   render() {
     const { show, review } = this.state;

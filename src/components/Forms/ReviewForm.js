@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import getUser from '../../helpers/data/authData';
-import { addReview, getUserShows, updateReview } from '../../helpers/data/userShowsData';
+import { addReview, getJoinTable } from '../../helpers/data/userShowsData';
 
 export default class ReviewForm extends Component {
   state = {
@@ -15,7 +15,7 @@ export default class ReviewForm extends Component {
     this.setState({
       userId,
     });
-    this.loadUserShows(userId);
+    this.getJoinTableFirebaseKey(this.state.showId);
   }
 
   handleChange = (e) => {
@@ -26,22 +26,19 @@ export default class ReviewForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.firebaseKey === '') {
-      addReview(this.state)
-        .then(() => {
-          this.props.onUpdate();
-        });
-    } else {
-      // updateReview(this.state)
-      //   .then(() => {
-      //     this.props.onUpdate(this.state.firebaseKey);
-      //   });
-    }
+    addReview(this.state)
+      .then(() => {
+        this.props.onUpdate();
+      });
   }
 
-  loadUserShows = (userId) => {
-    getUserShows(userId).then((response) => {
-      this.setState({ firebaseKey: response[0].firebaseKey });
+  getJoinTableFirebaseKey = (showId) => {
+    getJoinTable(showId).then((response) => {
+      this.setState({
+        firebaseKey: response.firebaseKey,
+        description: response.description,
+        rating: response.rating,
+      });
     });
   }
 
