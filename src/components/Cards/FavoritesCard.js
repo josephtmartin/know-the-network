@@ -1,6 +1,8 @@
 import React from 'react';
+import AppModal from '../AppModal';
+import ReviewForm from '../Forms/ReviewForm';
 
-export default function WatchlistCard({ show, wasWatched, wasFavorited }) {
+export default function FavoritesCard({ show, removeFavorite, onUpdate }) {
   return (
         <div className='card m-2'>
           <div className='card-image-container'>
@@ -12,9 +14,11 @@ export default function WatchlistCard({ show, wasWatched, wasFavorited }) {
               <h5>Country: {show.country}</h5>
               <h5>Airing: {show.status}</h5>
               <div className='button-container'>
-                <button className='btn btn-secondary watched' id={show.id} onClick={(e) => wasWatched(e)}>Watched</button>
-                <button className='btn btn-secondary favorite' id={show.id} onClick={(e) => wasFavorited(e)}>Favorite</button>
+                <button className='btn btn-secondary favorite' id={show.id} onClick={(e) => removeFavorite(e)}>Remove From Favorites</button>
               </div>
+              <AppModal title={'Review Form'} buttonLabel={'Leave A Review'}>
+                <ReviewForm showId={show.id} onUpdate={onUpdate}/>
+              </AppModal>
           </div>
         </div>
   );
