@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { getSingleShow } from '../helpers/data/showData';
-import { createUserShowsWatchlist, createUserShowsFavorites } from '../helpers/data/userShowsData';
+import { createUserShowsWatchlist, createUserShowsFavorites, getJoinTable } from '../helpers/data/userShowsData';
 import getUid from '../helpers/data/authData';
+import ReviewCard from '../components/Cards/ReviewCard';
 
 export default class SingleShow extends Component {
   state = {
     show: {},
-    review: {},
+    reviews: [],
   }
 
   componentDidMount() {
@@ -14,7 +15,7 @@ export default class SingleShow extends Component {
     this.getShow(showId);
     const userId = getUid();
     this.setState({ userId });
-    // this.loadReviews(showId);
+    this.loadReviews(showId);
   }
 
   getShow = (showId) => {
@@ -38,19 +39,21 @@ export default class SingleShow extends Component {
     createUserShowsFavorites(showId, userId);
   }
 
-  // loadReviews = (showId) => {
-  //   getReviews(showId)
-  //     .then((response) => {
-  //       this.setState({
-  //         review: response,
-  //       });
-  //     });
-  // }
+  loadReviews = (showId) => {
+    getJoinTable(showId)
+      .then((response) => {
+        this.setState({
+          reviews: response,
+        });
+      });
+  }
 
   render() {
-    const { show, review } = this.state;
+    const { show, reviews } = this.state;
+    const renderReviews = () => (
+      reviews.map((review) => <ReviewCard key={review.firebaseKey} review={review}/>)
+    );
     return (
-      <>
         <div className='d-flex flex-wrap justify-content-center container'>
           <div className='card m-2'>
           <img className='card-img-top' src={show.image_thumbnail_path} alt='show Img' />
@@ -63,14 +66,13 @@ export default class SingleShow extends Component {
               <button className='btn btn-secondary watchlist-button' onClick={this.addToWatchlist}>Add To WatchList</button>
               <button className='btn btn-secondary favorites-button' onClick={this.addToFavorites}>Add To Favorites</button>
             </div>
-            {/* <div>
-              <h3>{review.description}</h3>
-              <h3>{review.rating}</h3>
-            </div> */}
+            <div>
+              <h2>Reviews</h2>
+              <div>{renderReviews()}</div>
+            </div>
           </div>
         </div>
       </div>
-    </>
     );
   }
 }

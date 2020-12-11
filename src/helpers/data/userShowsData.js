@@ -55,20 +55,30 @@ const wasFavorited = (showId) => new Promise((resolve, reject) => {
     .then(resolve).catch((error) => reject(error));
 });
 
-const addReview = (showId) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId.showId}`).then((response) => {
-    console.warn(Object.keys(response.data)[0]);
-    const firebaseKey = Object.keys(response.data)[0];
-    axios.patch(`${baseUrl}/user-shows/${firebaseKey}.json`, showId);
+const addReview = (reviewObj) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/user-shows.json?orderBy="firebaseKey"&equalTo="${reviewObj.firebaseKey}"`).then((response) => {
+    const joinTable = (Object.values(response.data)[0]);
+    axios.patch(`${baseUrl}/user-shows/${joinTable.firebaseKey}.json`, reviewObj);
   })
     .then(resolve).catch((error) => reject(error));
 });
 
 const getJoinTable = (showId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`).then((response) => {
-    resolve(Object.values(response.data)[0]);
+    resolve(Object.values(response.data));
   }).catch((error) => reject(error));
 });
+
+// const getReviews = (showId) => new Promise((resolve, reject) => {
+//   axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`).then((response) => {
+//     const reviews = Object.values(response.data);
+//     reviews.forEach((review) => {
+//       if (review.description && review.rating) {
+//         resolve(review);
+//       }
+//     });
+//   }).catch((error) => reject(error));
+// });
 
 export {
   createUserShowsWatchlist,
@@ -78,4 +88,5 @@ export {
   wasFavorited,
   addReview,
   getJoinTable,
+  // getReviews,
 };
