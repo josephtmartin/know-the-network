@@ -4,10 +4,7 @@ import { addReview, getJoinTable } from '../../helpers/data/userShowsData';
 
 export default class ReviewForm extends Component {
   state = {
-    firebaseKey: '',
     showId: this.props.showId,
-    description: '',
-    rating: '',
   }
 
   componentDidMount() {
@@ -34,10 +31,15 @@ export default class ReviewForm extends Component {
 
   getJoinTableFirebaseKey = (showId) => {
     getJoinTable(showId).then((response) => {
-      this.setState({
-        firebaseKey: response.firebaseKey,
-        description: response.description,
-        rating: response.rating,
+      response.forEach((item) => {
+        const userId = getUser();
+        if (item.userId === userId) {
+          this.setState({
+            firebaseKey: item.firebaseKey,
+            description: item.description,
+            rating: item.rating,
+          });
+        }
       });
     });
   }
