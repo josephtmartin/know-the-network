@@ -16,6 +16,7 @@ I wanted to create this app because when I cancelled cable I wanted to know what
 
 ## Deploy Link/Status
 [Site Link](knowthenetwork.netlify.app)
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f1f95088-0e74-4f5c-a691-17ed0c703cea/deploy-status)](https://app.netlify.com/sites/knowthenetwork/deploys)
 
 ## Planning
