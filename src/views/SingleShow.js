@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { getSingleShow } from '../helpers/data/showData';
-import { createUserShowsWatchlist, createUserShowsFavorites, getJoinTable } from '../helpers/data/userShowsData';
+import {
+  createUserShowsWatchlist,
+  createUserShowsFavorites,
+  getJoinTable,
+  getReviews,
+} from '../helpers/data/userShowsData';
 import getUid from '../helpers/data/authData';
 import ReviewCard from '../components/Cards/ReviewCard';
 
@@ -40,7 +45,7 @@ export default class SingleShow extends Component {
   }
 
   loadReviews = (showId) => {
-    getJoinTable(showId)
+    getReviews(showId)
       .then((response) => {
         this.setState({
           reviews: response,
@@ -49,7 +54,7 @@ export default class SingleShow extends Component {
   }
 
   render() {
-    const { show, reviews } = this.state;
+    const { show, reviews, userId } = this.state;
     const renderReviews = () => (
       reviews.map((review) => <ReviewCard key={review.firebaseKey} review={review}/>)
     );
@@ -62,10 +67,12 @@ export default class SingleShow extends Component {
               <h5>Network: {show.network}</h5>
               <h5>Country: {show.country}</h5>
               <h5>Airing: {show.status}</h5>
-            <div className='button-container-board d-flex justify-content-center'>
-              <button className='btn btn-secondary watchlist-button' onClick={this.addToWatchlist}>Add To WatchList</button>
-              <button className='btn btn-secondary favorites-button' onClick={this.addToFavorites}>Add To Favorites</button>
-            </div>
+              {userId && (
+                <div className='button-container-board d-flex justify-content-center'>
+                  <button className='btn btn-secondary watchlist-button' onClick={this.addToWatchlist}>Add To WatchList</button>
+                  <button className='btn btn-secondary favorites-button' onClick={this.addToFavorites}>Add To Favorites</button>
+                </div>
+              )}
             <div>
               <h2>Reviews</h2>
               <div>{renderReviews()}</div>

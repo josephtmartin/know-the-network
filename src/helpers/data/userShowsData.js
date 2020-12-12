@@ -69,16 +69,18 @@ const getJoinTable = (showId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-// const getReviews = (showId) => new Promise((resolve, reject) => {
-//   axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`).then((response) => {
-//     const reviews = Object.values(response.data);
-//     reviews.forEach((review) => {
-//       if (review.description && review.rating) {
-//         resolve(review);
-//       }
-//     });
-//   }).catch((error) => reject(error));
-// });
+const getReviews = (showId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/user-shows.json?orderBy="showId"&equalTo=${showId}`).then((response) => {
+    const reviews = Object.values(response.data);
+    const reviewArray = [];
+    reviews.forEach((review) => {
+      if (review.description && review.rating) {
+        reviewArray.push(review);
+      }
+    });
+    resolve(reviewArray);
+  }).catch((error) => reject(error));
+});
 
 export {
   createUserShowsWatchlist,
@@ -88,5 +90,5 @@ export {
   wasFavorited,
   addReview,
   getJoinTable,
-  // getReviews,
+  getReviews,
 };
