@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Ratings from 'react-ratings-declarative';
 import getUser from '../../helpers/data/authData';
 import { addReview, getJoinTable } from '../../helpers/data/userShowsData';
 
@@ -37,10 +38,15 @@ export default class ReviewForm extends Component {
           this.setState({
             firebaseKey: item.firebaseKey,
             description: item.description,
-            rating: item.rating,
           });
         }
       });
+    });
+  }
+
+  changeRating = (newRating) => {
+    this.setState({
+      rating: newRating,
     });
   }
 
@@ -57,17 +63,18 @@ export default class ReviewForm extends Component {
           className='form-control form-control-lg m-1'
           required
           />
-          <input
-          type='number'
-          name='rating'
-          min='1'
-          max='10'
-          value={this.state.rating}
-          onChange={this.handleChange}
-          placeholder='Show Rating 1-10'
-          className='form-control form-control-lg m-1'
-          required
-          />
+          <Ratings
+            rating={this.state.rating}
+            widgetRatedColors="gold"
+            widgetHoverColors="gold"
+            changeRating={this.changeRating}
+          >
+            <Ratings.Widget widgetRatedColor="gold"/>
+            <Ratings.Widget widgetRatedColor="gold"/>
+            <Ratings.Widget widgetRatedColor="gold"/>
+            <Ratings.Widget widgetRatedColor="gold"/>
+            <Ratings.Widget widgetRatedColor="gold"/>
+          </Ratings>
           <button>Submit</button>
       </form>
     );
