@@ -3,7 +3,6 @@ import { getSingleShow } from '../helpers/data/showData';
 import {
   createUserShowsWatchlist,
   createUserShowsFavorites,
-  getJoinTable,
   getReviews,
 } from '../helpers/data/userShowsData';
 import getUid from '../helpers/data/authData';
