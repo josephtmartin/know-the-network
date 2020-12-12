@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Auth from '../components/Auth';
-import { getMostPopular } from '../helpers/data/showData';
+import { getMostPopular, filterMostPopular } from '../helpers/data/showData';
 import ShowCard from '../components/Cards/ShowCard';
 import SearchInput from '../components/SearchInput';
 
 export default class Home extends Component {
   state = {
     shows: [],
+    network: '',
   }
 
   componentDidMount() {
@@ -30,6 +31,19 @@ export default class Home extends Component {
     });
   }
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    filterMostPopular(this.state.network).then((response) => {
+      this.setState({ shows: response });
+    });
+  };
+
   render() {
     const { shows } = this.state;
     const renderShows = () => (
@@ -43,6 +57,43 @@ export default class Home extends Component {
         </div>
         <div className='search-container'>
           <SearchInput />
+        </div>
+        <div className="d-flex justify-content-center">
+          <form onSubmit={this.handleSubmit} className="network-filter-form">
+            <div className='form-group'>
+                  <label>Filter By Network</label>
+                  <select
+                    className='form-control'
+                    id='network'
+                    name='network'
+                    value={this.state.network}
+                    onChange={this.handleChange}
+                  >
+                    <option>AMC</option>
+                    <option>ABC</option>
+                    <option>CBS All Access</option>
+                    <option>Comedy Central</option>
+                    <option>Cartoon Network</option>
+                    <option>Disney+</option>
+                    <option>Fox</option>
+                    <option>FX</option>
+                    <option>HBO</option>
+                    <option>HBO Max</option>
+                    <option>History</option>
+                    <option>Hulu</option>
+                    <option>MTV</option>
+                    <option>NBC</option>
+                    <option>Netflix</option>
+                    <option>Syfy</option>
+                    <option>Showtime</option>
+                    <option>Starz</option>
+                    <option>The CW</option>
+                  </select>
+            </div>
+            <button className="btn form-button form-button-text mt-1">
+                Submit
+            </button>
+          </form>
         </div>
         <div className='d-flex flex-wrap container'>{renderShows()}</div>
       </div>
