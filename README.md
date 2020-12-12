@@ -14,6 +14,11 @@ I wanted to create this app because when I cancelled cable I wanted to know what
   - The authenticated user can add/delete a show on their favorites and add a description or favorite part of the show and the user can update the description 
 - The authenticated user can rate the shows they have in their favorites
 
+## Deploy Link/Status
+[Site Link](knowthenetwork.netlify.app)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f1f95088-0e74-4f5c-a691-17ed0c703cea/deploy-status)](https://app.netlify.com/sites/knowthenetwork/deploys)
+
 ## Planning
 - [Figma Wireframe](https://www.figma.com/file/6lvjsIpekpPl5gwTUztuWb/Know-The-Network?node-id=0%3A1)
 - [LucidChart ERD](https://lucid.app/lucidchart/invitations/accept/7c9cc794-9f81-44d5-90e3-1d2b49e1cf0b)
