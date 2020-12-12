@@ -39,9 +39,13 @@ export default class Home extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    filterMostPopular(this.state.network).then((response) => {
-      this.setState({ shows: response });
-    });
+    if (this.state.network === 'All Shows') {
+      this.loadShows();
+    } else {
+      filterMostPopular(this.state.network).then((response) => {
+        this.setState({ shows: response });
+      });
+    }
   };
 
   render() {
@@ -69,6 +73,7 @@ export default class Home extends Component {
                     value={this.state.network}
                     onChange={this.handleChange}
                   >
+                    <option>All Shows</option>
                     <option>AMC</option>
                     <option>ABC</option>
                     <option>CBS All Access</option>
