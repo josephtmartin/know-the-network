@@ -11,6 +11,7 @@ import ReviewCard from '../components/Cards/ReviewCard';
 export default class SingleShow extends Component {
   state = {
     show: {},
+    network: [],
     reviews: [],
   }
 
@@ -26,6 +27,7 @@ export default class SingleShow extends Component {
     getSingleShow(showId)
       .then((response) => {
         this.setState({
+          network: response.network,
           show: response,
         });
       });
@@ -53,11 +55,16 @@ export default class SingleShow extends Component {
   }
 
   render() {
-    const { show, reviews, userId } = this.state;
+    const {
+      show,
+      network,
+      reviews,
+      userId,
+    } = this.state;
     const renderReviews = () => (
       reviews.map((review) => <ReviewCard key={review.firebaseKey} review={review}/>)
     );
-    const mapNetworks = show.network.map((item) => item.name);
+    const mapNetworks = network.map((item) => item.name);
     return (
         <div className='d-flex flex-wrap justify-content-center container'>
           <div className='card m-2'>
