@@ -31,7 +31,7 @@ I wanted to create this app because when I cancelled cable I wanted to know what
 ## Loom Video
 [Overview Of Project Planning](https://www.loom.com/share/865f41b3000b475eb504b6b9bf3ea2c0)
 
-## Example Data From [EpisoDate.com API](https://www.episodate.com/api)
+## Example Data From [The Movie DB](https://www.themoviedb.org/)
 ```
     {
       "id": 46778,
