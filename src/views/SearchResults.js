@@ -29,6 +29,29 @@ export default class SearchResults extends Component {
     }
   }
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.state.network === 'All Shows') {
+      this.performSearch();
+    } else {
+      const showArray = [];
+      this.state.results.forEach((show) => {
+        show.network.forEach((item) => {
+          if (item.name === this.state.network) {
+            showArray.push(show);
+          }
+        });
+      });
+      this.setState({ results: showArray });
+    }
+  };
+
   render() {
     const { results } = this.state;
     const showResults = () => (
@@ -40,6 +63,44 @@ export default class SearchResults extends Component {
     return (
       <div>
         <h1 className='d-flex justify-content-center'>Search Results</h1>
+        <div className="d-flex justify-content-center">
+          <form onSubmit={this.handleSubmit} className="network-filter-form">
+            <div className='form-group'>
+                  <label>Filter By Network</label>
+                  <select
+                    className='form-control'
+                    id='network'
+                    name='network'
+                    value={this.state.network}
+                    onChange={this.handleChange}
+                  >
+                    <option>All Shows</option>
+                    <option>AMC</option>
+                    <option>ABC</option>
+                    <option>CBS All Access</option>
+                    <option>Comedy Central</option>
+                    <option>Cartoon Network</option>
+                    <option>Disney+</option>
+                    <option>Fox</option>
+                    <option>FX</option>
+                    <option>HBO</option>
+                    <option>HBO Max</option>
+                    <option>History</option>
+                    <option>Hulu</option>
+                    <option>MTV</option>
+                    <option>NBC</option>
+                    <option>Netflix</option>
+                    <option>Syfy</option>
+                    <option>Showtime</option>
+                    <option>Starz</option>
+                    <option>The CW</option>
+                  </select>
+            </div>
+            <button className="btn form-button form-button-text mt-1">
+                Submit
+            </button>
+          </form>
+        </div>
         <div className='d-flex flex-wrap justify-content-center container'>
           {showResults()}
         </div>
