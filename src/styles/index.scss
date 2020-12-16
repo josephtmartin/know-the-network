@@ -5,3 +5,11 @@
 body {
   background-color: $favColor;
 }
+
+.card-img, .card-img-bottom, .card-img-top  {
+  height: 300px;
+  width: 250px;
+}
+.card-body {
+  width: 250px;
+}

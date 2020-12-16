@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function ShowCard({ show }) {
+  const mapNetworks = show.network.map((item) => item.name);
+
   return (
         <div className='card m-2'>
           <div className='card-image-container'>
@@ -11,7 +13,7 @@ export default function ShowCard({ show }) {
           </div>
           <div className='card-body'>
             <h3 className='card-title'>{show.name}</h3>
-              <h5>Network: {show.network}</h5>
+              <h5>Network: {mapNetworks}</h5>
               <h5>Country: {show.country}</h5>
               <h5>Airing: {show.status}</h5>
           </div>

@@ -11,6 +11,7 @@ import ReviewCard from '../components/Cards/ReviewCard';
 export default class SingleShow extends Component {
   state = {
     show: {},
+    network: [],
     reviews: [],
   }
 
@@ -26,6 +27,7 @@ export default class SingleShow extends Component {
     getSingleShow(showId)
       .then((response) => {
         this.setState({
+          network: response.network,
           show: response,
         });
       });
@@ -53,17 +55,23 @@ export default class SingleShow extends Component {
   }
 
   render() {
-    const { show, reviews, userId } = this.state;
+    const {
+      show,
+      network,
+      reviews,
+      userId,
+    } = this.state;
     const renderReviews = () => (
       reviews.map((review) => <ReviewCard key={review.firebaseKey} review={review}/>)
     );
+    const mapNetworks = network.map((item) => item.name);
     return (
         <div className='d-flex flex-wrap justify-content-center container'>
-          <div className='card m-2'>
-          <img className='card-img-top' src={show.image_thumbnail_path} alt='show Img' />
-          <div className='card-body'>
-            <h3 className='card-title'>{show.name}</h3>
-              <h5>Network: {show.network}</h5>
+          <div className='card m-5'>
+            <img className='card-img-top-single' src={show.image_thumbnail_path} alt='show Img' />
+          <div className='card-body-single'>
+            <h3 className='card-title-single'>{show.name}</h3>
+              <h5>Network: {mapNetworks}</h5>
               <h5>Country: {show.country}</h5>
               <h5>Airing: {show.status}</h5>
               {userId && (

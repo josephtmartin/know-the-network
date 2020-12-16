@@ -100,7 +100,7 @@ export default class Home extends Component {
             </button>
           </form>
         </div>
-        <div className='d-flex flex-wrap container'>{renderShows()}</div>
+        <div className='d-flex flex-wrap justify-content-center container'>{renderShows()}</div>
       </div>
     );
   }
