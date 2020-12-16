@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function ShowCard({ show }) {
-  const mapNetworks = show.network.map((item) => item.name);
+  const mapNetworks = show.network.map((item) => `${item.name} `);
 
   return (
         <div className='card m-2'>
