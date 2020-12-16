@@ -93,7 +93,35 @@ const getSingleShow = (id) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-const searchShows = () => console.warn('nothing');
+const searchShows = (term) => new Promise((resolve, reject) => {
+  axios.get(`https://api.themoviedb.org/3/search/tv?api_key=bc5d1ec46ecdeb9e460eca0c17a03791&language=en-US&query=${term}`)
+    .then((response) => {
+      const data = response.data.results;
+      const checkImage = (image) => {
+        let imageUrl = image;
+        if (imageUrl === 'https://image.tmdb.org/t/p/w220_and_h330_facenull') {
+          imageUrl = 'https://www.bearcatscanner.com/images/detailed/1/no_image_sm_vjbo-hm.png';
+        }
+        return imageUrl;
+      };
+      const showsArray = data.map((show) => (
+        axios.get(`https://api.themoviedb.org/3/tv/${show.id}?api_key=bc5d1ec46ecdeb9e460eca0c17a03791&language=en-US`)
+          .then((singleResponse) => {
+            const showDetails = singleResponse.data;
+            const showObj = {
+              id: showDetails.id,
+              name: showDetails.name,
+              image_thumbnail_path: checkImage(`https://image.tmdb.org/t/p/w220_and_h330_face${showDetails.backdrop_path}`),
+              network: showDetails.networks,
+              country: showDetails.origin_country,
+              status: showDetails.status,
+            };
+            return showObj;
+          })
+      ));
+      resolve(Promise.all([...showsArray]));
+    }).catch((error) => reject(error));
+});
 
 const filterMostPopular = (term) => new Promise((resolve, reject) => {
   getMostPopular().then((response) => {
