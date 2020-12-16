@@ -62,7 +62,7 @@ export default class SingleShow extends Component {
     return (
       <div>
         <h1>Shows You Want To Watch</h1>
-        <div className='d-flex flex-wrap container'>{renderShows()}</div>
+        <div className='d-flex flex-wrap justify-content-center container'>{renderShows()}</div>
       </div>
     );
   }

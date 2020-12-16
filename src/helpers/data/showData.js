@@ -95,7 +95,20 @@ const getSingleShow = (id) => new Promise((resolve, reject) => {
 
 const searchShows = () => console.warn('nothing');
 
-const filterMostPopular = () => console.warn('nothing');
+const filterMostPopular = (term) => new Promise((resolve, reject) => {
+  getMostPopular().then((response) => {
+    const shows = response;
+    const showArray = [];
+    shows.forEach((show) => {
+      show.network.forEach((item) => {
+        if (item.name === term) {
+          showArray.push(show);
+        }
+      });
+    });
+    resolve(showArray);
+  });
+});
 
 export {
   getMostPopular,
