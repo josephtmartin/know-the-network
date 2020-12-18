@@ -95,7 +95,7 @@ export default class Home extends Component {
                     <option>The CW</option>
                   </select>
             </div>
-            <button className="btn form-button form-button-text mt-1">
+            <button className="form-btn btn btn-outline-primary">
                 Submit
             </button>
           </form>

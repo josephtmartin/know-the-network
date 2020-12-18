@@ -50,7 +50,7 @@ export default class Favorites extends Component {
     );
     return (
       <div>
-        <h1>Favorite Shows You've Watched</h1>
+        <h1 className='mt-3'>Favorite Shows You've Watched</h1>
         <div className='d-flex flex-wrap justify-content-center container'>{renderShows()}</div>
       </div>
     );

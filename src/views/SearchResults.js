@@ -62,7 +62,7 @@ export default class SearchResults extends Component {
 
     return (
       <div>
-        <h1 className='d-flex justify-content-center'>Search Results</h1>
+        <h1 className='d-flex justify-content-center mt-3'>Search Results</h1>
         <div className="d-flex justify-content-center">
           <form onSubmit={this.handleSubmit} className="network-filter-form">
             <div className='form-group'>

@@ -1,28 +1,36 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
-@import '~bootstrap/dist/css/bootstrap.min.css';
-@import 'variables';
+@import '~bootstrap/dist/css/bootstrap.min.css'; 
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
+@import './variables';
+@import './components/index.scss';
 
 body {
   background-color: $favColor;
 }
-
-.card-img, .card-img-bottom, .card-img-top  {
-  height: 300px;
-  width: 250px;
+h1 {
+  background-image: linear-gradient(45deg, #90cea1, #01b4e4);
+  background-size: 100%;
+  background-repeat: repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  font-family: 'Racing Sans One', cursive;
+  color: #01b4e4;
 }
-.card-body {
-  width: 250px;
+.btn-secondary {
+  font-size: 20px;
+  font-family: 'Racing Sans One', cursive;
+  color: #002952;
 }
-
 #page-container {
   position: relative;
   min-height: 100vh;
 }
-
 #content-wrap {
   padding-bottom: 2.5rem;
 }
-
 #footer {
   position: absolute;
   bottom: 0;

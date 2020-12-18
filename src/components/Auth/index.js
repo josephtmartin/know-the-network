@@ -12,8 +12,8 @@ export default class Auth extends Component {
   render() {
     return (
       <div className='Auth'>
-        <button className='btn btn-secondary' onClick={this.loginClickEvent}>
-          Login With Google
+        <button className='btn nav-link btn-outline-primary m-2' onClick={this.loginClickEvent}>
+          Login With Google To Create A Watchlist/Favorites Page
         </button>
       </div>
     );

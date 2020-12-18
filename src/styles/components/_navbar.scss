@@ -1,0 +1,35 @@
+.navbar-toggler {
+  color: white;
+}
+.custom-toggler.navbar-toggler {
+  border-color: rgb(1,180,228);
+}
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(1,180,228, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+.navbar-brand {
+  font-size: 35px;
+  font-family: 'Racing Sans One', cursive;
+  font-weight: 400;
+}
+.nav-link, a {
+  font-size: 20px;
+  text-decoration: none;
+  color:#01b4e4;
+  font-family: 'Racing Sans One', cursive;
+}
+.nav-link .btn {
+  font-size: 20px;
+  font-family: 'Racing Sans One', cursive;
+  color: #01b4e4;
+}
+.gradient-text {
+  background-image: linear-gradient(45deg, #01b4e4, #90cea1);
+  background-size: 100%;
+  background-repeat: repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
