@@ -75,9 +75,9 @@ export default class SingleShow extends Component {
               <h5>Country: {show.country}</h5>
               <h5>Airing: {show.status}</h5>
               {userId && (
-                <div className='button-container-board d-flex justify-content-center'>
-                  <button className='btn btn-secondary watchlist-button' onClick={this.addToWatchlist}>Add To WatchList</button>
-                  <button className='btn btn-secondary favorites-button' onClick={this.addToFavorites}>Add To Favorites</button>
+                <div className='button-container d-flex justify-content-center'>
+                  <button className='btn btn-secondary watchlist-button m-2' onClick={this.addToWatchlist}>Add To WatchList</button>
+                  <button className='btn btn-secondary favorites-button m-2' onClick={this.addToFavorites}>Add To Favorites</button>
                 </div>
               )}
             <div>

@@ -135,7 +135,7 @@ const filterMostPopular = (term) => new Promise((resolve, reject) => {
       });
     });
     resolve(showArray);
-  });
+  }).catch((error) => reject(error));
 });
 
 export {

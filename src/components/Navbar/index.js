@@ -24,22 +24,22 @@ const MyNavbar = ({ user }) => {
 
   return (
     <div>
-      <Navbar color="dark" light expand="lg">
-        <NavbarBrand href="/">Know the Network</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
+      <Navbar color="dark" expand="lg">
+        <NavbarBrand className='gradient-text' href="/">Know the Network</NavbarBrand>
+        <NavbarToggler onClick={toggle} className='custom-toggler'/>
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="link-container mr-auto" navbar>
             <NavItem>
-              <Link to='/watchlist' className="nav-link" href="#">Watchlist</Link>
+              <Link to='/watchlist' className="nav-link m-2" href="#">Watchlist</Link>
             </NavItem>
             <NavItem>
-              <Link to='/favorites' className="nav-link" href="#">Favorites</Link>
+              <Link to='/favorites' className="nav-link m-2" href="#">Favorites</Link>
             </NavItem>
           </Nav>
           <NavbarText>
             <div className="form-inline my-2 my-lg-0">
                 {user && (
-                  <button className="nav-link btn btn-danger" onClick={logMeOut}>Logout</button>
+                  <button className="nav-link btn btn-outline-primary" onClick={logMeOut}>Logout</button>
                 )}
             </div>
           </NavbarText>
