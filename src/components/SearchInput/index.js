@@ -10,7 +10,6 @@ class SearchInput extends Component {
     e.preventDefault();
     this.props.history.push(`/search/${this.state.text}`);
 
-    // text empties after submit
     this.setState({
       text: '',
     });
